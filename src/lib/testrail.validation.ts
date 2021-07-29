@@ -77,6 +77,7 @@ export class TestRailValidation {
   public countTestSpecFiles () {
     // Read and store cli arguments into array
     var cliArgs = process.argv.slice(2);
+
     /**
      * Count how many test files will be included in the run
      * to be able to close test run after last one
@@ -85,6 +86,18 @@ export class TestRailValidation {
     var workingDirectory = [];
     var specFiles = [];
     var specFilesArray = [];
+
+    // Without a spec file specification in the command line we just grab all feature files under the cypress/integration dir
+    if (!cliArgs.toString().includes("--spec")) {
+      var options = {
+        cwd: "cypress/integration/",
+        nodir: true
+      };
+      specFiles = glob.sync('**/*.feature',options)
+      return specFiles.length
+    }
+
+
     for (index = 0; index < cliArgs.length; ++index) {
       value = cliArgs[index];
       if (
