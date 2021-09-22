@@ -74,15 +74,15 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             runner.on('start', function () {
                 _this.serverTestCaseIds = _this.testRailApi.getCases(_this.suiteId);
                 /**
-                * runCounter is used to count how many spec files we have during one run
-                * in order to wait for close test run function
-                */
+                 * runCounter is used to count how many spec files we have during one run
+                 * in order to wait for close test run function
+                 */
                 TestRailCache.store('runCounter', runCounter);
                 /**
-                * creates a new TestRail Run
-                * unless a cached value already exists for an existing TestRail Run in
-                * which case that will be used and no new one created.
-                */
+                 * creates a new TestRail Run
+                 * unless a cached value already exists for an existing TestRail Run in
+                 * which case that will be used and no new one created.
+                 */
                 if (!TestRailCache.retrieve('runId')) {
                     if (_this.reporterOptions.suiteId) {
                         TestRailLogger.log("Following suiteId has been set in cypress.json file: " + _this.suiteId);
@@ -127,7 +127,7 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
                 var counter = TestRailCache.retrieve('runCounter');
                 // load runId before purging testrail-cache.txt
                 _this.runId = TestRailCache.retrieve('runId');
-                if (numSpecFiles.length > counter) {
+                if (numSpecFiles > counter) {
                     runCounter++;
                 }
                 else {
