@@ -123,8 +123,7 @@ export class CypressTestRailReporter extends reporters.Spec {
         var counter = TestRailCache.retrieve('runCounter');
         // load runId before purging testrail-cache.txt
         this.runId = TestRailCache.retrieve('runId');
-
-        if (numSpecFiles.length > counter) {
+        if (numSpecFiles > counter) {
           runCounter++
         } else {
           this.testRailApi.closeRun();

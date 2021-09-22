@@ -97,7 +97,6 @@ var TestRail = /** @class */ (function () {
         if (this.options.typeId) {
             url += "&type_id=" + this.options.typeId;
         }
-
         while (moreCasesToGet) {
             url += "&offset=" + offsetValue
             this.makeSync(axios({

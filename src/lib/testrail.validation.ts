@@ -135,6 +135,6 @@ export class TestRailValidation {
       specFilesArray = specFilesArray.concat(specFiles[index]);
     }
     
-    return specFilesArray;
+    return specFilesArray.length;
   }
 }
