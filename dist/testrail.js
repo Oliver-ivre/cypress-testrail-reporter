@@ -109,8 +109,8 @@ var TestRail = /** @class */ (function () {
                 }
             })
                 .then(function (response) {
-                    casesArray += response.data.cases.map(function (item) {
-                        return item.id;
+                    response.data.cases.map(function (item) {
+                        casesArray.push(item.id)
                     })
                     if (response.data._links.next) {
                         offsetValue += 250
