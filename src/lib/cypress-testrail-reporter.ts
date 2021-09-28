@@ -8,6 +8,8 @@ const TestRailCache = require('./testrail.cache');
 const TestRailLogger = require('./testrail.logger');
 const chalk = require('chalk');
 var runCounter = 1;
+let previousCase;
+let previousCaseResult;
 
 export class CypressTestRailReporter extends reporters.Spec {
   private results: TestRailResult[] = [];
@@ -161,6 +163,11 @@ export class CypressTestRailReporter extends reporters.Spec {
 
     if (caseIds.length) {
       const caseResults = caseIds.map(caseId => {
+        if (previousCase === caseId && previousCaseResult === 5) {
+          status = 5
+        }
+        previousCase = caseId
+        previousCaseResult = status
         return {
           case_id: caseId,
           status_id: status,

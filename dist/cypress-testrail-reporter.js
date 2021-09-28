@@ -26,6 +26,8 @@ var TestRailCache = require('./testrail.cache');
 var TestRailLogger = require('./testrail.logger');
 var chalk = require('chalk');
 var runCounter = 1;
+let previousCase;
+let previousCaseResult;
 var CypressTestRailReporter = /** @class */ (function (_super) {
     __extends(CypressTestRailReporter, _super);
     function CypressTestRailReporter(runner, options) {
@@ -167,6 +169,12 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             TestRailLogger.log("The following test IDs were found in Cypress tests, but not found in Testrail: " + invalidCaseIds);
         if (caseIds.length) {
             var caseResults = caseIds.map(function (caseId) {
+                //Updated so that if we run a scenario outline, the whole case fails on TestRail if any of the examples fail
+                if (previousCase === caseId && previousCaseResult === 5) {
+                    status = 5
+                }
+                previousCase = caseId
+                previousCaseResult = status
                 return {
                     case_id: caseId,
                     status_id: status,
