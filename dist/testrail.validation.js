@@ -123,7 +123,7 @@ var TestRailValidation = /** @class */ (function () {
         for (index = 0; index < specFiles.length; ++index) {
             specFilesArray = specFilesArray.concat(specFiles[index]);
         }
-        return specFilesArray;
+        return specFiles.length;
     };
     return TestRailValidation;
 }());
