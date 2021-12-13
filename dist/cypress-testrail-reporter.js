@@ -169,7 +169,6 @@ var CypressTestRailReporter = /** @class */ (function (_super) {
             TestRailLogger.log("The following test IDs were found in Cypress tests, but not found in Testrail: " + invalidCaseIds);
         if (caseIds.length) {
             var caseResults = caseIds.map(function (caseId) {
-                status = test.title.match("@Bug") ? 2 : status
                 //Updated so that if we run a scenario outline, the whole case fails on TestRail if any of the examples fail
                 if (previousCase === caseId && previousCaseResult === 5) {
                     status = 5
