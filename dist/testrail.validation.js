@@ -85,7 +85,7 @@ var TestRailValidation = /** @class */ (function () {
         // Without a spec file specification in the command line we just grab all feature files under the cypress/integration dir
         if (!cliArgs.toString().includes("--spec")) {
             var options = {
-                cwd: "cypress/integration/",
+                cwd: "cypress/e2e/",
                 nodir: true
             };
             specFiles = glob.sync('**/*.feature',options)
@@ -94,7 +94,7 @@ var TestRailValidation = /** @class */ (function () {
 
         for (index = 0; index < cliArgs.length; ++index) {
             value = cliArgs[index];
-            if (value.includes("cypress/integration") === true ||
+            if (value.includes("cypress/e2e") === true ||
                 value.includes("cypress/tests") === true) {
                 result = value;
                 break;
